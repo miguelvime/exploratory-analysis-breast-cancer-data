@@ -19,8 +19,11 @@ breast_data <- breast_data[-c(1,2),]
 # 2 y 3. Centr?donos en la variable ajcc_pathologic_tumor_stage, crear un nuevo data frame (breast_data_stage) que contenga como variables la edad de diagn?stico
 #, el estadio del tumor y una variable que agrupe los diferencas estadios en cinco.
 
-breast_data_stage <- select(breast_data$age_at_diagnosis,breast_data$ajcc_pathologic_tumor_stage) %>% 
-  mutate(breast_data_stage, stage
+breast_data_stage <- breast_data %>% 
+  select(breast_data$age_at_diagnosis,breast_data$ajcc_pathologic_tumor_stage) %>% 
+  mutate(stage = case_when(
+    
+  )
 
 # 4. An?lisis exploratorio de diagrama de cajas (boxplot)
 
