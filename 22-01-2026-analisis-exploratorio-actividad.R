@@ -26,10 +26,14 @@ breast_data_stage <- breast_data %>%
     ajcc_pathologic_tumor_stage %in% c("Stage II", "Stage IIA", "Stage IIB") ~ "Stage II",
     ajcc_pathologic_tumor_stage %in% c("Stage III", "Stage IIIA") ~ "Stage III",
     ajcc_pathologic_tumor_stage == "Stage IV" ~ "Stage IV",
-    ajcc_pathologic_tumor_stage == "Stage X" ~ "Stage X")
+    ajcc_pathologic_tumor_stage == "Stage X" ~ "Stage X"),
+    age_at_diagnosis = as.numeric(age_at_diagnosis)
   )
-#Me gustaría confirmar que está bien hecho
-# 4. An?lisis exploratorio de diagrama de cajas (boxplot)
+
+# 4. Análisis exploratorio de diagrama de cajas (boxplot)
+ggplot(breast_data_stage,aes(x = stage,y = age_at_diagnosis)) +
+    geom_boxplot(fill = "lightblue", colour = "black") +
+    labs(x = "Estadío", y ="Edad" )
 
 
 # 5. Estudio de la edad media de diagn?stico para cada estadio de la enfermedad
