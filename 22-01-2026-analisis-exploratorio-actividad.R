@@ -20,11 +20,15 @@ breast_data <- breast_data[-c(1,2),]
 #, el estadio del tumor y una variable que agrupe los diferencas estadios en cinco.
 
 breast_data_stage <- breast_data %>% 
-  select(breast_data$age_at_diagnosis,breast_data$ajcc_pathologic_tumor_stage) %>% 
+  select(age_at_diagnosis,ajcc_pathologic_tumor_stage) %>% 
   mutate(stage = case_when(
-    
+    ajcc_pathologic_tumor_stage %in% c("Stage I", "Stage IA", "Stage IB") ~ "Stage I",
+    ajcc_pathologic_tumor_stage %in% c("Stage II", "Stage IIA", "Stage IIB") ~ "Stage II",
+    ajcc_pathologic_tumor_stage %in% c("Stage III", "Stage IIIA") ~ "Stage III",
+    ajcc_pathologic_tumor_stage == "Stage IV" ~ "Stage IV",
+    ajcc_pathologic_tumor_stage == "Stage X" ~ "Stage X")
   )
-
+#Me gustaría confirmar que está bien hecho
 # 4. An?lisis exploratorio de diagrama de cajas (boxplot)
 
 
